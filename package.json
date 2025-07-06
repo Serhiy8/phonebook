@@ -1,5 +1,6 @@
 {
   "name": "phonebook1",
+  "homepage": "https://Serhiy8.github.io/phonebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
