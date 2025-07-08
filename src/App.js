@@ -10,7 +10,7 @@ import { getError } from "./operations/selectors";
 function App() {
   
   const dispatch = useDispatch();
-  const error = useSelector(getError)
+  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());

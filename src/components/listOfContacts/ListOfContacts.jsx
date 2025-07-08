@@ -25,10 +25,10 @@ export const ListOfContacts = () => {
     return (
         <List>
             {dataContacts.length === 0 && isLoading ? <div>Loading...</div> :
-                dataContacts.length === 0 ? <div><p>No contacts in a list!</p></div> : visibleContacts.length > 0 ? visibleContacts.map(({name, number, id}) => <ListItem key={id}>
+                dataContacts.length === 0 ? <div><p>No contacts in a list!</p></div> : visibleContacts.length > 0 ? visibleContacts.map(({name, phone, id}) => <ListItem key={id}>
                 <ListItemContainer>
                     <p>{name}</p>
-                    <p>{number}</p>
+                    <p>{phone}</p>
                 </ListItemContainer>
                 
                 <MuiButton textButton={'delete'} typeButton={<DeleteIcon/>} onClick={() => onDelete(id)} disabled={disabledBtn === id}>delete</MuiButton>

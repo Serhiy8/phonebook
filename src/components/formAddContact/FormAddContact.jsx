@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addContact } from "../../operations/operations";
-import { nanoid } from "nanoid";
 import InputWithIcon from "../muiElements/inputEl";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import PhoneAndroid from "@mui/icons-material/PhoneAndroid";
@@ -10,7 +9,6 @@ import { toast } from "react-toastify";
 import { Form } from "./formAddContact.styled";
 import { getContacts } from "../../operations/selectors";
 
-
 export const FormAddContact = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
@@ -18,7 +16,7 @@ export const FormAddContact = () => {
   const onSubmitForm = async (e) => {
       e.preventDefault();
       
-    const { name, number } = e.target.elements;
+    const { name, phone } = e.target.elements;
     const normalize = name.value.toLowerCase().trim();
     const isOnList = contacts.some(
       (contact) => contact.name.toLowerCase() === normalize
@@ -29,13 +27,13 @@ export const FormAddContact = () => {
       return;
     }
 
-    if (name.value.trim() === '' || number.value.trim() === '') {
+    if (name.value.trim() === '' || phone.value.trim() === '') {
       toast.error("Fields can't be empty!");
       return;
     }
 
     const result = await dispatch(
-      addContact({ id: nanoid(), name: name.value, number: number.value })
+      addContact({ name: name.value, phone: phone.value })
       );
 
       const addSuccessuful =()=>{
@@ -52,7 +50,7 @@ export const FormAddContact = () => {
           <InputWithIcon name={'name'} label={'Contact name'} type={'text'}>
             <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
           </InputWithIcon>
-          <InputWithIcon name={'number'} label={'Phone number'} type={'number'}>
+          <InputWithIcon name={'phone'} label={'Phone number'} type={'number'}>
             <PhoneAndroid sx={{ color: "action.active", mr: 1, my: 0.5 }} />
           </InputWithIcon>
           <MuiButton type={"submit"} typeButton={<SaveIcon/>} textButton={'Add contact'}/>
